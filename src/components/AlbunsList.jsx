@@ -1,29 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-/* import './AlbunsList.css'; */
 
 class AlbunsList extends React.Component {
   render() {
-    const { list, atistName } = this.props;
+    const { albuns } = this.props;
     return (
       <div>
-        <h2>{ `Resultado de álbuns de: ${atistName}` }</h2>
-        <div className="albuns-list">
+        <div className="albuns-albuns">
           {
-            (list.length === 0) ? (<p>Nenhum álbum foi encontrado</p>) : (
-              list.map(({ collectionName, artistName, collectionId, artworkUrl100 }) => (
-                <div className="albun-container" key={ collectionId }>
+            (albuns.length === 0) ? (<p>Nenhum álbum foi encontrado</p>) : (
+              albuns.map(({ collectionName, artistName, collectionId, artworkUrl100 }) => (
+                <Link
+                  key={ collectionId }
+                  to={ `/album/${collectionId}` }
+                >
                   <img src={ artworkUrl100 } alt={ collectionName } />
-                  <br />
-                  <Link
-                    data-testid={ `link-to-album-${collectionId}` }
-                    to={ `/album/${collectionId}` }
-                  >
-                    { collectionName }
-                  </Link>
+                  <p>{ collectionName }</p>
                   <p>{ artistName }</p>
-                </div>
+                </Link>
               ))
             )
           }
@@ -34,17 +29,16 @@ class AlbunsList extends React.Component {
 }
 
 AlbunsList.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape({
+  albuns: PropTypes.arrayOf(PropTypes.shape({
     artistId: PropTypes.number.isRequired,
     artistName: PropTypes.string.isRequired,
     collectionId: PropTypes.number.isRequired,
     collectionName: PropTypes.string.isRequired,
-    collectionPrice: PropTypes.number.isRequired,
+    collectionPrice: PropTypes.number,
     artworkUrl100: PropTypes.string.isRequired,
     releaseDate: PropTypes.string.isRequired,
     trackCount: PropTypes.number.isRequired,
   })).isRequired,
-  searchName: PropTypes.string.isRequired,
 };
 
 export default AlbunsList;

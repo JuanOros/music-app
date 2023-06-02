@@ -1,47 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createUser } from '../services/userAPI';
-import Loading from '../components/Loading.jsx';
+import Loading from '../components/Loading';
+import { createUser } from '../helpers/loginStorage';
 
 class Login extends React.Component {
   state = {
+    inputValue: '',
     isLoading: false,
   };
 
-  handleCreatUser = async (event) => {
+  handleCreatUser = (event) => {
     event.preventDefault();
 
-    const { history, loginInputValue } = this.props;
-    console.log(history);
+    const { inputValue } = this.state;
+    const { history } = this.props;
 
     this.setState({ isLoading: true });
 
-    await createUser({ name: loginInputValue });
+    createUser({ name: inputValue });
     history.push('/search');
   };
 
+  handleInputChange = (event) => {
+    const { value, name } = event.target;
+
+    this.setState((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   render() {
-    const { loginInputValue, onInputChange } = this.props;
-    const { isLoading } = this.state;
+    const { inputValue, isLoading } = this.state;
     const minLen = 3;
     return (
       <div data-testid="page-login">
-        <h1>Music App</h1>
+        <h1>Logo TrybeTunes</h1>
         {
           isLoading ? <Loading /> : (
             <form className="login-container">
               <input
                 type="text"
-                id="loginInputValue"
+                name="inputValue"
                 data-testid="login-name-input"
-                onChange={ onInputChange }
-                value={ loginInputValue }
+                onChange={ this.handleInputChange }
+                value={ inputValue }
                 placeholder="Digite o seu nome aqui!"
               />
               <button
                 type="submit"
                 data-testid="login-submit-button"
-                disabled={ loginInputValue.length < minLen }
+                disabled={ inputValue.length < minLen }
                 onClick={ this.handleCreatUser }
               >
                 Entrar
