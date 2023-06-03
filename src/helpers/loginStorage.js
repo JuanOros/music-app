@@ -5,7 +5,7 @@ export const createUser = (user) => {
   const emptyUser = {
     name: '',
     email: '',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTdmrjoiXGVFEcd1cX9Arb1itXTr2u8EKNpw&usqp=CAU',
+    image: '',
     description: '',
   };
   setUser({ ...emptyUser, ...user });

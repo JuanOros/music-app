@@ -26,7 +26,7 @@ class Favorites extends React.Component {
   render() {
     const { path, isloading, musics } = this.state;
     return (
-      <div>
+      <div className='flex bg-zinc-900'>
         <Header />
         {
           isloading ? <Loading /> : (

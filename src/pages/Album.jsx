@@ -31,7 +31,7 @@ class Album extends React.Component {
   render() {
     const { path, isloading, musics, artist } = this.state;
     return (
-      <div>
+      <div className='flex bg-zinc-900'>
         <Header />
         {
           isloading ? <Loading /> : (

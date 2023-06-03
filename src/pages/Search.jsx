@@ -54,9 +54,10 @@ class Search extends React.Component {
       albuns,
     } = this.state;
     return (
-        <>
+        <div className='flex bg-zinc-900'>
           <Header />
           <SearchBar
+            className='asdf'
             handleChange={ this.handleChange }
             searchArtistName={ searchArtistName }
             handleSubmit={ this.handleSubmit }
@@ -68,7 +69,7 @@ class Search extends React.Component {
               />
             ))
           }
-        </>
+        </div>
     );
   }
 }
