@@ -6,7 +6,7 @@ import { AiTwotoneSound } from "react-icons/ai";
 class Header extends React.Component {
   render() {
     return (
-      <header className='flex flex-col py-10 justify-between h-screen w-1/6'>
+      <header className='flex flex-col py-10 justify-between h-screen shadow-lg shadow-zinc-500 w-1/6'>
         <div className='flex flex-col items-center text-zinc-500'>
           <AiTwotoneSound className='w-28 h-28'/>
           <p>Music App</p>

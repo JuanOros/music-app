@@ -16,7 +16,7 @@ class UserInfo extends React.Component {
     return (
       <div className='flex flex-col items-center'>
         {
-          image === '' ? <AiOutlineUser className='h-16 w-16 rounded-full' /> : (
+          image === '' ? <AiOutlineUser className='text-gray-400 text h-16 w-16 rounded-full' /> : (
             <img
               className='w-16 h-16 rounded-full'
               src={ image }
