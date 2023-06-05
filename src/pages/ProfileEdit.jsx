@@ -25,7 +25,8 @@ class ProfileEdit extends React.Component {
 
   handleChange = ({ target }) => {
     const { name } = target;
-    const value = target.type === 'file' ? target.files[0] : target.value;
+    const value = target.type === 'file' ? URL.createObjectURL(target.files[0]) : target.value;
+    console.log(value);
 
     this.setState({
       [name]: value,
@@ -36,7 +37,7 @@ class ProfileEdit extends React.Component {
     event.preventDefault();
     const { name, email, description, image } = this.state;
     createUser({ name, email, description, image });
-    
+
     const { history } = this.props;
     history.push('/profile');
   };
@@ -52,58 +53,56 @@ class ProfileEdit extends React.Component {
     return (
       <div className='flex bg-zinc-900'>
         <Header />
-        {
-          isLoadinng ? <Loading /> : (
-            <div>
-              {/* // This is a change state input file
-              <input
-              type="file"
-              name="image"
-              onChange={ this.handleChange }
-            /> */}
-              <img src={ image } alt={ name } />
-              <h4>Url Link</h4>
-              <input
-                type="text"
-                value={ image }
-                name="image"
-                onChange={ this.handleChange }
-              />
+        <div className='w-5/6 h-screen overflow-auto'>
+          <div
+            className="bg-[url('https://images.hdqwalls.com/wallpapers/music-pipes-abstract-4k-dm.jpg')] h-40 bg-no-repeat bg-top bg-cover flex justify-center items-center"
+          />
+          {
+            isLoadinng ? <Loading /> : (
+              <div>
+                <input
+                  type="file"
+                  name="image"
+                  onChange={this.handleChange}
+                /> 
+                <img src={image} alt='' />
+                <h4>Url Link</h4>
 
-              <h4>Name</h4>
-              <input
-                type="text"
-                value={ name }
-                name="name"
-                onChange={ this.handleChange }
-              />
+                <h4>Name</h4>
+                <input
+                  type="text"
+                  value={name}
+                  name="name"
+                  onChange={this.handleChange}
+                />
 
-              <h4>E-mail</h4>
-              <input
-                type="email"
-                value={ email }
-                name="email"
-                placeholder='Whire your email here'
-                onChange={ this.handleChange }
-              />
+                <h4>E-mail</h4>
+                <input
+                  type="email"
+                  value={email}
+                  name="email"
+                  placeholder='Whire your email here'
+                  onChange={this.handleChange}
+                />
 
-              <h4>Description</h4>
-              <textarea
-                type="checkbox"
-                value={ description }
-                name="description"
-                placeholder='Whire your description here'
-                onChange={ this.handleChange }
-              />
+                <h4>Description</h4>
+                <textarea
+                  type="checkbox"
+                  value={description}
+                  name="description"
+                  placeholder='Whire your description here'
+                  onChange={this.handleChange}
+                />
 
-              <button
-              onClick={ this.editProfile }
-              >
-                SAVE PROFILE
-              </button>
-            </div>
-          )
-        }
+                <button
+                  onClick={this.editProfile}
+                >
+                  SAVE PROFILE
+                </button>
+              </div>
+            )
+          }
+        </div>
       </div>
     );
   }

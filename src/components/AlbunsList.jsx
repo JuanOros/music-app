@@ -14,9 +14,13 @@ class AlbunsList extends React.Component {
                 <Link
                   to={`/album/${collectionId}`}
                 >
-                  <img className='w-full' src={artworkUrl100} alt={collectionName} />
+                  <div className='relative scale-90 hover:scale-100 ease-in-out duration-150'>
+                    <img className='w-full' src={artworkUrl100} alt={collectionName} />
+
+                    <div className=' top-0 absolute w-full h-full hover:bg-gradient-to-t hover:to-zinc-900 hover:from-transparent ease-in-out duration-150' />
+                  </div>
                   <p className='hover:underline text-xs hover: mt-3'>{artistName}</p>
-                  <p className='hover:underline text-sm h-11 text-ellipsis overflow-hidden font-bold'>{collectionName}</p>
+                  <p className='hover:underline text-ellipsis overflow-hiddenline text-sm h-11 overflow-hidden font-bold'>{collectionName}</p>
                 </Link>
               </div>
             ))

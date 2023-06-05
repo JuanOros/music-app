@@ -11,7 +11,7 @@ class Favorites extends React.Component {
   };
 
   componentDidMount() {
-    const { history: { location: { pathname }} } = this.props;
+    const { history: { location: { pathname } } } = this.props;
     this.setState({
       path: pathname,
       isloading: false,
@@ -28,21 +28,27 @@ class Favorites extends React.Component {
     return (
       <div className='flex bg-zinc-900'>
         <Header />
-        {
-          isloading ? <Loading /> : (
-            <div>
-              {
-                musics.map((music, index) => (
-                  <MusicCard
-                    path={ path }
-                    musicInfo={ music }
-                    key={ index }
-                  />
-                ))
-              }
-            </div>
-          )
-        }
+        <div className='w-5/6 h-screen overflow-auto'>
+          <div
+            className="bg-[url('https://images.hdqwalls.com/wallpapers/music-pipes-abstract-4k-dm.jpg')] h-40 bg-no-repeat bg-top bg-cover flex justify-center items-center" >
+            <h1 className='text-5xl text-white'>Favorite Musics</h1>
+          </div>
+          {
+            isloading ? <Loading /> : (
+              <div className='flex flex-col items-center py-8'>
+                {
+                  musics.map((music, index) => (
+                    <MusicCard
+                      path={path}
+                      musicInfo={music}
+                      key={index}
+                    />
+                  ))
+                }
+              </div>
+            )
+          }
+        </div>
       </div>
     );
   }
