@@ -20,6 +20,7 @@ class Search extends React.Component {
 
   handleChange = ({ target }) => {
     const { name } = target;
+    
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
@@ -35,7 +36,10 @@ class Search extends React.Component {
     const { searchArtistName } = this.state;
 
     searchArtistName && setSearch(searchArtistName);
-    this.setState({ searchButtonLoad: true });
+    this.setState({
+      searchButtonLoad: true,
+      albumLoading: true
+    });
 
     const albuns = await searchAlbumsAPI(searchArtistName);
 
@@ -54,21 +58,27 @@ class Search extends React.Component {
       albuns,
     } = this.state;
     return (
-        <>
+        <div className='flex bg-zinc-900'>
           <Header />
-          <SearchBar
-            handleChange={ this.handleChange }
-            searchArtistName={ searchArtistName }
-            handleSubmit={ this.handleSubmit }
-          />
-            {
-              searchButtonLoad && (albumLoading ? <Loading /> : (
-              <AlbunsList
-                albuns={ albuns }
+          <div className='w-5/6 h-screen overflow-auto'>
+            <div
+              className="bg-[url('https://images.hdqwalls.com/wallpapers/music-pipes-abstract-4k-dm.jpg')] h-40 bg-no-repeat bg-top bg-cover flex justify-center items-center"
+            >
+              <SearchBar
+                handleChange={ this.handleChange }
+                searchArtistName={ searchArtistName }
+                handleSubmit={ this.handleSubmit }
               />
-            ))
-          }
-        </>
+            </div>
+              {
+                searchButtonLoad && (albumLoading ? <Loading /> : (
+                <AlbunsList
+                  albuns={ albuns }
+                />
+              ))
+            }
+          </div>
+        </div>
     );
   }
 }

@@ -37,7 +37,7 @@ class Profile extends React.Component {
       isLoadinng,
     } = this.state;
     return (
-      <div>
+      <div className='flex bg-zinc-900'>
         <Header />
         {
           isLoadinng ? <Loading /> : (

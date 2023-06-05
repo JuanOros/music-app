@@ -31,27 +31,35 @@ class Album extends React.Component {
   render() {
     const { path, isloading, musics, artist } = this.state;
     return (
-      <div>
+      <div className='flex bg-zinc-900'>
         <Header />
-        {
-          isloading ? <Loading /> : (
-            <div>
+        <div className='w-5/6 h-screen overflow-auto text-white relative'>
+          <div
+            className="bg-[url('https://images.hdqwalls.com/wallpapers/music-pipes-abstract-4k-dm.jpg')] h-40 bg-no-repeat bg-top bg-cover flex justify-center items-center" />
+          {
+            isloading ? <Loading /> : (
               <div>
-                <img src={ artist.artworkUrl100 } alt={ artist.collectionName } />
-                <h1>{ `${artist.artistName} - ${artist.collectionName}` }</h1>
-              </div>
-              {
-                musics.map((music, index) => (
-                  <MusicCard
-                    path={ path }
-                    musicInfo={ music }
-                    key={ index }
+                <div className='absolute top-28 left-32'>
+                  <img
+                    src={ artist.artworkUrl100 } alt={ artist.collectionName }
                   />
-                ))
-              }
-            </div>
-          )
-        }
+                  <h1>{ `${artist.artistName} - ${artist.collectionName}` }</h1>
+                </div>
+                <div className='flex flex-col items-center mb-10 mt-32'>
+                  {
+                    musics.map((music, index) => (
+                      <MusicCard
+                        path={ path }
+                        musicInfo={ music }
+                        key={ index }
+                      />
+                    ))
+                  }
+                </div>
+              </div>
+            )
+          }
+        </div>
       </div>
     );
   }

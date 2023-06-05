@@ -31,16 +31,14 @@ class AlbumMusics extends React.Component {
       musicInfo: {
         collectionName,
         artworkUrl60,
-        artistName,
         trackName,
         previewUrl,
       },
     } = this.props;
     return (
-      <div>
+      <div className='flex w-max items-center my-3'>
         <img src={ artworkUrl60 } alt={ collectionName } />
-        <h3>{ trackName  }</h3>
-        <p>{ artistName }</p>
+        <h3 className='text-ellipsis overflow-hidden w-80 ml-5'>{ trackName  }</h3>
         <audio data-testid="audio-component" src={ previewUrl } controls>
           <track kind="captions" />
           O seu navegador não suporta o elemento
@@ -51,10 +49,10 @@ class AlbumMusics extends React.Component {
         </audio>
         <label>
           {
-            isFavorite ? <AiFillHeart /> : <AiOutlineHeart />
+            isFavorite ? <AiFillHeart className='text-[#e31b23] text-2xl ml-6' /> : <AiOutlineHeart className=' text-2xl ml-6' />
           }
           <input
-            style={ {display: 'none' }}
+            className='hidden'
             type="checkbox"
             name="isFavorite"
             checked={ isFavorite }
