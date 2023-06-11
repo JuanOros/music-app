@@ -45,7 +45,7 @@ class Profile extends React.Component {
           <div className='mx-60 my-12 p-8 bg bg-zinc-800 rounded-md'>
             {
               isLoadinng ? <Loading /> : (
-                <div className='flex gap-16'>
+                <div className='flex gap-16 justify-center'>
                   {
                     image === '' ? <AiOutlineUser className='text-gray-400 bg-zinc-500 h-28 w-28 rounded-full' /> : (
                       <img
