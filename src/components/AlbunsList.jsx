@@ -8,9 +8,9 @@ class AlbunsList extends React.Component {
     return (
       <div className='text-white py-8 px-11 flex flex-wrap justify-between'>
         {
-          (albuns.length === 0) ? (<p className='my-auto mx-auto'>Nenhum álbum foi encontrado</p>) : (
+          (albuns.length === 0) ? (<p className='my-auto mx-auto'>No album was found</p>) : (
             albuns.map(({ collectionName, artistName, collectionId, artworkUrl100 }) => (
-              <div key={collectionId} className='w-32 h-56 m-5'>
+              <div key={collectionId} className='w-32 h-56 my-5 mx-3'>
                 <Link
                   to={`/album/${collectionId}`}
                 >

@@ -1,9 +1,9 @@
 import React from 'react';
-import Loading from '../components/Loading';
 import AlbunsList from '../components/AlbunsList';
 import SearchBar from '../components/SearchBar';
 import searchAlbumsAPI, { getSearch, setSearch } from '../services/searchAlbumsAPI';
 import Header from '../components/Header';
+import LoadingCard from '../components/LoadingCard';
 
 class Search extends React.Component {
   state = {
@@ -15,7 +15,9 @@ class Search extends React.Component {
 
   componentDidMount() {
     const result = getSearch();
-    this.setState({ searchArtistName: result }, () => this.getAlbuns());
+    if (result !== '') {
+      this.setState({ searchArtistName: result }, () => this.getAlbuns());
+    }
   };
 
   handleChange = ({ target }) => {
@@ -71,10 +73,16 @@ class Search extends React.Component {
               />
             </div>
               {
-                searchButtonLoad && (albumLoading ? <Loading /> : (
-                <AlbunsList
-                  albuns={ albuns }
-                />
+                !searchButtonLoad ? <h1 className='text-5xl text-white text-center mt-12'>Browser any artist</h1> : (albumLoading ? (
+                  <div className='text-white py-8 px-11 flex flex-wrap justify-between'>
+                    {
+                      Array(40).fill(0).map((_, index) => <LoadingCard key={index} />)
+                    }
+                  </div>
+                ) : (
+                  <AlbunsList
+                    albuns={ albuns }
+                  />
               ))
             }
           </div>
