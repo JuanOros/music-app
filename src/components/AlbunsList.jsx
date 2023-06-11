@@ -10,7 +10,7 @@ class AlbunsList extends React.Component {
         {
           (albuns.length === 0) ? (<p className='my-auto mx-auto'>Nenhum álbum foi encontrado</p>) : (
             albuns.map(({ collectionName, artistName, collectionId, artworkUrl100 }) => (
-              <div key={collectionId} className='w-32 h-56 m-5'>
+              <div key={collectionId} className='w-32 h-56 my-5 mx-3'>
                 <Link
                   to={`/album/${collectionId}`}
                 >
