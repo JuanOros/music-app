@@ -45,6 +45,7 @@ class Login extends React.Component {
                 <h3 className='font-bold text-center text-4xl text-white'>SING IN</h3>
                 <div className='flex flex-col text-gray-400 py-4'>
                   <input
+                    autoComplete='off'
                     className="bg-zinc-500 rounded-md ps-5 placeholder:text-zinc-300 p-2 text-white"
                     type="text"
                     name="inputValue"

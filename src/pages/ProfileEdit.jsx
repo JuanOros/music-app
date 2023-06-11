@@ -83,6 +83,7 @@ class ProfileEdit extends React.Component {
                   <div className='[&>h4]:mt-10 flex flex-col w-full'>
                     <h4>Name</h4>
                     <input
+                      autoComplete='off'
                       className="bg-zinc-500 rounded-md ps-5 placeholder:text-zinc-300 p-2 text-white"
                       type="text"
                       value={name}
@@ -92,6 +93,7 @@ class ProfileEdit extends React.Component {
 
                     <h4>E-mail</h4>
                     <input
+                      autoComplete='off'
                       className="bg-zinc-500 rounded-md ps-5 placeholder:text-zinc-300 p-2 text-white"
                       type="email"
                       value={email}
@@ -102,6 +104,7 @@ class ProfileEdit extends React.Component {
 
                     <h4>Description</h4>
                     <textarea
+                      autoComplete='off'
                       className="bg-zinc-500 rounded-md ps-5 placeholder:text-zinc-300 p-2 text-white"
                       type="checkbox"
                       value={description}

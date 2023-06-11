@@ -1,5 +1,5 @@
 export const setSearch = (artist) => localStorage.setItem('artist', artist);
-export const getSearch = () => localStorage.getItem('artist');
+export const getSearch = () => localStorage.getItem('artist') ? localStorage.getItem('artist') : '';
 const searchAlbumsAPI = async (artist) => {
   const artistNameURL = encodeURI(artist).replaceAll('%20', '+');
 

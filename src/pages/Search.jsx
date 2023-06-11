@@ -15,7 +15,9 @@ class Search extends React.Component {
 
   componentDidMount() {
     const result = getSearch();
-    this.setState({ searchArtistName: result }, () => this.getAlbuns());
+    if (result !== '') {
+      this.setState({ searchArtistName: result }, () => this.getAlbuns());
+    }
   };
 
   handleChange = ({ target }) => {
@@ -71,7 +73,7 @@ class Search extends React.Component {
               />
             </div>
               {
-                searchButtonLoad && (albumLoading ? (
+                !searchButtonLoad ? <h1 className='text-5xl text-white text-center mt-12'>Browser any artist</h1> : (albumLoading ? (
                   <div className='text-white py-8 px-11 flex flex-wrap justify-between'>
                     {
                       Array(40).fill(0).map((_, index) => <LoadingCard key={index} />)
